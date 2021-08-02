@@ -5,3 +5,7 @@ init:
 test:
 	. env/bin/activate
 	pytest tests
+
+run:
+	. env/bin/activate
+	python main.py

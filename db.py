@@ -8,13 +8,12 @@ class DB(object):
     @classmethod
     def instance(cls):
         if cls._instance is None:
-            print('Creating new instance')
             cls._instance = cls.__new__(cls)
             cls._data = {}
         return cls._instance
 
     def get(self, key):
-        return self._data.get(key)
+        return self._data.get(key, None)
 
     def set(self, key, value):
         self._data[key] = value
