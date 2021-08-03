@@ -4,7 +4,7 @@ init:
 
 test:
 	. env/bin/activate
-	pytest tests
+	pytest tests --capture=sys -rA
 
 run:
 	. env/bin/activate

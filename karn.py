@@ -43,7 +43,8 @@ class Karn(cmd.Cmd):
 
     def do_EXEC(self, arg):
         self.multi_mode = False
-        self.cmdqueue.extend(self.multi_commands_queue)
+        for command in self.multi_commands_queue:
+            self.onecmd(command)
         self.multi_commands_queue = []
 
     def do_DISCARD(self, arg):
