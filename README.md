@@ -37,3 +37,9 @@ Run tests
 ```shell
 $ make test
 ```
+
+## Limitations
+1. All data will be lost after the terminal is closed.
+2. `SET` command will convert any numeric input to int. All other values are stored as string.
+3. Input errors are handled wherever possible except for the `COMPACT` command.
+4. `COMPACT` command considers history from the start of execution but ignores `MULTI`, `EXEC`, `DISCARD`.
