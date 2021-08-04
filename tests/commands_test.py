@@ -3,6 +3,24 @@ from karn import Karn
 karn = Karn()
 
 
+def test_compact(capsys):
+    karn.onecmd('SET counter 10')
+    captured = capsys.readouterr()
+    assert captured.out == 'OK\n'
+
+    karn.onecmd('INCR counter')
+    captured = capsys.readouterr()
+    assert captured.out == '11\n'
+
+    karn.onecmd('INCRBY counter 10')
+    captured = capsys.readouterr()
+    assert captured.out == '21\n'
+
+    karn.onecmd('COMPACT')
+    captured = capsys.readouterr()
+    assert captured.out == 'SET counter 12\n'
+
+
 def test_basic(capsys):
     karn.onecmd('SET hello world')
     captured = capsys.readouterr()
