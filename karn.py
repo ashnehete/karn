@@ -1,5 +1,7 @@
 import cmd
+import traceback
 
+from commands.compact import CompactCommand
 from commands.get import GetCommand
 from commands.incr import IncrCommand
 from commands.incrby import IncrbyCommand
@@ -10,8 +12,13 @@ from commands.delete import DelCommand
 class Karn(cmd.Cmd):
     """Simple command processor example."""
     prompt = '(karn) '
+
+    # For Multi line processing
     multi_mode = False
     multi_commands_queue = []
+
+    # For compact processing
+    command_history = []
 
     def do_GET(self, arg):
         op = self.run(GetCommand, arg)
@@ -52,13 +59,20 @@ class Karn(cmd.Cmd):
         self.multi_commands_queue = []
 
     def do_COMPACT(self, arg):
-        pass
+        op = self.run(CompactCommand, self.command_history)
+        if op:
+            print(op)
 
     def do_EXIT(self, arg):
         return True
 
     def run(self, command_class, arg):
         command = command_class(arg)
+        self.command_history.append({
+            'cmd': str(command),
+            'arg': arg
+        })
+
         try:
             command.validate()
             if self.multi_mode:
@@ -66,4 +80,5 @@ class Karn(cmd.Cmd):
             else:
                 return command.execute()
         except Exception as e:
+            print(traceback.format_exc())
             return f'(error) {e}'
