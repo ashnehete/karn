@@ -8,4 +8,4 @@ test:
 
 run:
 	. env/bin/activate
-	python main.py
+	./karn-cli
