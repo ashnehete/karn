@@ -1,6 +1,6 @@
 # Karn In-Memory Database
 
-Karn is a simple in-memory database accessible why the command line.
+Karn is a simple in-memory database accessible via the command line.
 
 ## Commands
 
