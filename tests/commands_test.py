@@ -18,7 +18,7 @@ def test_compact(capsys):
 
     karn.onecmd('COMPACT')
     captured = capsys.readouterr()
-    assert captured.out == 'SET counter 12\n'
+    assert captured.out == 'SET counter 21\n'
 
 
 def test_basic(capsys):
