@@ -29,7 +29,7 @@ class CompactCommand(BaseCommand):
 
             elif cmd == 'INCRBY':
                 key = args[0]
-                keys[key] = keys[key] + 1 if key in keys else int(args[1])
+                keys[key] = keys[key] + int(args[1]) if key in keys else int(args[1])
 
         return '\n'.join([f'SET {key} {keys[key]}' for key in keys])
 
